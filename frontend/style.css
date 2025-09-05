@@ -1,0 +1,575 @@
+/*
+* === Dark Glassmorphism Theme ===
+* New Palette:
+* Background: Deep Space Blue/Purple Gradient
+* Panels: Translucent Dark Slate
+* Text: Light Gray & Off-White
+* Accent: Vibrant Teal/Cyan Gradient
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #020617 0%, #111827 50%, #1e293b 100%);
+    min-height: 100vh;
+    overflow: hidden;
+    color: #d1d5db; /* Default light text color */
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    gap: 16px;
+    padding: 16px;
+}
+
+.left-panel,
+.tree-container {
+    background: rgba(17, 24, 39, 0.75); /* Dark, semi-transparent base */
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.left-panel {
+    width: 400px;
+    overflow-y: auto;
+    padding: 28px;
+}
+
+.right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.tree-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.tree-controls,
+.tree-legend {
+    position: absolute;
+    background: rgba(30, 41, 59, 0.8); /* Slightly lighter transparent background */
+    backdrop-filter: blur(16px);
+    border-radius: 16px;
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    z-index: 1000;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.tree-controls {
+    top: 24px;
+    left: 24px;
+    padding: 20px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* --- UPDATED: Accent Buttons with Teal/Cyan --- */
+.control-btn {
+    background: linear-gradient(135deg, #2dd4bf 0%, #0891b2 100%);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.control-btn:hover {
+    background: linear-gradient(135deg, #5eead4 0%, #22d3ee 100%);
+    transform: translateY(-2px);
+    box-shadow:
+        0 10px 15px -3px rgba(45, 212, 191, 0.2), /* Updated glow color */
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+}
+
+.tree-legend {
+    top: 24px;
+    right: 24px;
+    padding: 24px;
+    font-size: 13px;
+    min-width: 180px;
+}
+
+.legend-title {
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #e5e7eb;
+    font-size: 14px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    padding: 6px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.legend-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.legend-shape {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.legend-diamond {
+    transform: rotate(45deg);
+    border-radius: 5px;
+}
+
+.chat-container {
+    flex: 1;
+    background: rgba(17, 24, 39, 0.75);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+/* --- UPDATED: Title with Teal/Cyan Gradient --- */
+h1 {
+    margin-bottom: 32px;
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #5eead4, #2dd4bf, #67e8f9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    color: #e5e7eb;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#cy {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+/* --- UPDATED: Chat UI with Teal/Cyan Accent --- */
+.chat-header {
+    background: linear-gradient(135deg, #2dd4bf 0%, #0891b2 100%);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 16px 16px 0 0;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: transparent;
+    font-size: 14px;
+}
+
+.chat-input-container {
+    padding: 20px;
+    background: rgba(17, 24, 39, 0.85);
+    border-radius: 0 0 16px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-input-wrapper {
+    display: flex;
+    gap: 12px;
+}
+
+
+.chat-input {
+    flex: 1;
+    padding: 14px 18px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(55, 65, 81, 0.5);
+    color: #f3f4f6;
+}
+
+.chat-input:focus {
+    outline: none;
+    border-color: #5eead4; /* Teal accent focus */
+    box-shadow:
+        0 0 0 3px rgba(94, 234, 212, 0.2), /* Teal glow */
+        0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+.chat-send-btn {
+    background: linear-gradient(135deg, #2dd4bf 0%, #0891b2 100%);
+    color: white;
+    border: none;
+    padding: 14px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.chat-send-btn:hover {
+    background: linear-gradient(135deg, #5eead4 0%, #22d3ee 100%);
+    transform: translateY(-2px);
+    box-shadow:
+        0 10px 15px -3px rgba(45, 212, 191, 0.2), /* Updated glow color */
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.chat-send-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- UPDATED: Message Bubbles with Teal/Cyan Accent --- */
+.message {
+    margin-bottom: 16px;
+    padding: 16px 20px;
+    border-radius: 16px;
+    max-width: 85%;
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 1.6;
+    position: relative;
+}
+
+.message.user {
+    background: linear-gradient(135deg, #2dd4bf 0%, #0891b2 100%);
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 6px;
+    box-shadow:
+        0 10px 15px -3px rgba(45, 212, 191, 0.25), /* Updated glow color */
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.message.bot {
+    background: rgba(55, 65, 81, 0.7);
+    color: #e5e7eb;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom-left-radius: 6px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.message.error {
+    background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%);
+    color: #fecaca;
+    border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: rgba(255, 255, 255, 0.9);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.success-notification {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    background: linear-gradient(135deg, #059669 0%, #065f46 100%);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow:
+        0 20px 25px -5px rgba(16, 185, 129, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    z-index: 10000;
+    animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%) translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+}
+
+.zoom-indicator {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(17, 24, 39, 0.85);
+    backdrop-filter: blur(8px);
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #9ca3af;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-messages::-webkit-scrollbar,
+.left-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-messages::-webkit-scrollbar-track,
+.left-panel::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb,
+.left-panel::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #4b5563, #374151);
+    border-radius: 4px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover,
+.left-panel::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #6b7280, #4b5563);
+}
+
+.left-panel:hover,
+.tree-container:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 32px 64px -12px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* --- UPDATED: KB Editor Styling --- */
+.kb-editor-container {
+    background: rgba(17, 24, 39, 0.75); /* Match other panels */
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 28px;
+    margin-top: 16px; /* Add gap */
+    transition: all 0.3s ease;
+}
+
+.kb-editor-container:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 32px 64px -12px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Improvement: Aligned header gradient with the main H1 for consistency */
+.kb-editor-container h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #5eead4, #2dd4bf);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 16px;
+    margin-bottom: 12px;
+}
+
+.kb-editor-container p {
+    font-size: 0.9em;
+    color: #9ca3af; /* Softer text color for descriptions */
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.kb-form .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    gap: 15px;
+}
+
+.kb-form label {
+    font-weight: 600;
+    color: #d1d5db;
+    width: 110px;
+    flex-shrink: 0;
+    font-size: 14px;
+}
+
+/* Improvement: Added inset shadow for depth and refined padding */
+.kb-form input[type="text"],
+.kb-form select {
+    flex-grow: 1;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(30, 41, 59, 0.6);
+    color: #f3f4f6;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Improvement: Custom dropdown arrow using SVG to match theme */
+.kb-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 1rem center;
+    background-repeat: no-repeat;
+    background-size: 1em 1em;
+    padding-right: 3rem; /* Make space for the arrow */
+}
+
+/* Improvement: More pronounced focus state and dynamic arrow color */
+.kb-form input[type="text"]:focus,
+.kb-form select:focus {
+    outline: none;
+    border-color: #5eead4; /* Teal accent focus */
+    background: rgba(30, 41, 59, 0.9);
+    box-shadow:
+        0 0 0 3px rgba(94, 234, 212, 0.2), /* Teal glow */
+        inset 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Changes the dropdown arrow color to teal on focus */
+.kb-form select:focus {
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%235eead4' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+}
+
+.kb-form .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.kb-form .control-btn {
+    padding: 10px 18px; /* Adjusted padding for better balance */
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Specific style for the remove button to be less prominent */
+.kb-form .control-btn[onclick*="remove"] {
+    background: linear-gradient(135deg, #7f1d1d 0%, #b91c1c 100%) !important;
+}
+
+.kb-form .control-btn[onclick*="remove"]:hover {
+    background: linear-gradient(135deg, #991b1b 0%, #dc2626 100%);
+    box-shadow: 0 10px 15px -3px rgba(220, 38, 38, 0.2);
+}
+
+@media (max-width: 1200px) {
+    .left-panel {
+        width: 360px;
+    }
+
+    .container {
+        padding: 12px;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .left-panel {
+        width: 100%;
+        height: auto;
+        max-height: 45vh;
+    }
+
+    .tree-controls {
+        top: 16px;
+        left: 16px;
+        padding: 16px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tree-legend {
+        top: 16px;
+        right: 16px;
+        padding: 16px;
+    }
+
+    .control-btn {
+        justify-content: center;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+}

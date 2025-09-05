@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Tree Explorer - Hierarchical View</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape-dagre/2.5.0/cytoscape-dagre.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h1>🌳 Family Tree Explorer</h1>
+            
+            <div class="chat-container">
+                <div class="chat-header">
+                    <span>💬</span>
+                    <span>Family Tree Assistant</span>
+                </div>
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <input 
+                            type="text" 
+                            id="chatInput" 
+                            class="chat-input" 
+                            placeholder="Ask me anything about the family..."
+                            onkeypress="handleChatKeyPress(event)"
+                        >
+                        <button onclick="sendChatMessage()" class="chat-send-btn" id="chatSendBtn">
+                            <span>📤</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="tree-container">
+                <div class="tree-controls">
+                    <button class="control-btn" onclick="zoomIn()">🔍+ Zoom In</button>
+                    <button class="control-btn" onclick="zoomOut()">🔍- Zoom Out</button>
+                    <button class="control-btn" onclick="fitToScreen()">📱 Fit Screen</button>
+                    <button class="control-btn" onclick="centerView()">🎯 Center</button>
+                    <button class="control-btn" onclick="resetLayout()">🔄 Reset Layout</button>
+                </div>
+
+                <div class="tree-legend">
+                    <div class="legend-title">Legend</div>
+                    <div class="legend-item">
+                        <div class="legend-shape legend-diamond" style="background: #9f7aea; border-color: #6b46c1;"></div>
+                        <span>Current Person</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape" style="background: #4299e1; border-color: #2b6cb0;"></div>
+                        <span>Male</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape" style="background: #f56565; border-color: #c53030;"></div>
+                        <span>Female</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape" style="background: #e2e8f0; border-color: #a0aec0;"></div>
+                        <span>Unknown</span>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 11px; color: #64748b;">
+                        💡 Click to select, Double-click to explore
+                    </div>
+                </div>
+
+                <div class="zoom-indicator">
+                    Zoom: <span id="zoomLevel">100%</span>
+                </div>
+
+                <div id="cy"></div>
+            </div>
+
+            <div class="kb-editor-container">
+                <h2>Edit Knowledge Base</h2>
+                <p>Add or remove a parent-child relationship. Adding will also add gender facts if they don't exist.</p>
+                <div class="kb-form">
+                    <div class="form-group">
+                        <label for="parentName">Parent's Name</label>
+                        <input type="text" id="parentName" placeholder="e.g., Rachel">
+                        <select id="parentGender">
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="childName">Child's Name</label>
+                        <input type="text" id="childName" placeholder="e.g., Caleb">
+                        <select id="childGender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button class="control-btn" onclick="handleKbUpdate('add')">➕ Add Relationship</button>
+                        <button class="control-btn" onclick="handleKbUpdate('remove')">➖ Remove Relationship</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+</html>
